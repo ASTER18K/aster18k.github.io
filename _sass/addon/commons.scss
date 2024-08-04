@@ -12,6 +12,12 @@ html {
     }
   }
 
+  .syncopate-regular {
+    font-family: "Syncopate", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
   @media (prefers-color-scheme: dark) {
     &:not([data-mode]),
     &[data-mode='dark'] {
@@ -728,9 +734,9 @@ $btn-mb: 0.5rem;
   }
 
   .site-title {
-    font-family: inherit;
-    font-weight: 900;
-    font-size: 1.75rem;
+    font-family: Syncopate, sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
     line-height: 1.2;
     letter-spacing: 0.25px;
     margin-top: 1.25rem;
