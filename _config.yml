@@ -1,0 +1,48 @@
+# Setup
+title: A__R__C_H_1_V_E_
+url: https://arch1ve.aster1sk.com
+paginate: 1
+baseurl: ""
+permalink: pretty
+
+# Gems
+plugins:
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+# Optimize Jekyll
+exclude:
+  - .editorconfig
+  - .git
+  - .jekyll-cache
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Options
+
+# Google Analytics example
+#ga_analytics: UA-000000-0
+
+# Specify the author for blog posts
+author:
+  name: Donghyeon Lee
+  url: https://arch1ve.aster1sk.com
+  email: aster1sk@mail.aster1sk.com 
+
+# Custom vars
+version: 3.0.0
+
+# Navbar page list
+nav:
+  - title: Arch1ve
+    url: /archive
+
+  - title: About
+    url: /about
