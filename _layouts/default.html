@@ -24,14 +24,17 @@
         <small>
           &copy;
           2024 ~
-          <time datetime="{{ site.time | date_to_xmlschema }}"
-            >{{ site.time | date: '%Y' }}</time
-          >/ A__R__C_H_1_V_E_
+          <time id="current-year"></time>
+          / A__R__C_H_1_V_E_
           <br/>Donghyeon Lee<br/>
           (ASTER1SK/ASTER18K/a__s__t__e__r__i__s__k__)<br/>
           All rights reserved.
         </small>
       </footer>
+      <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.getElementById('current-year').setAttribute('datetime', new Date().toISOString());
+      </script>
     </div>
 
     {% if site.ga_analytics %}
