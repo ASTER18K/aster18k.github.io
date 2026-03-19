@@ -11,6 +11,7 @@ Residing in Japan since 2024
 <br />
 
 ## Career (Japan / 2024 ~)
+---
 - *[SANEI HYTECHS co.,ltd.](https://www.sanei-hy.co.jp/en/)*
   - *Software Engineer (2024.4 ~ 2024.12 / RL78 Embedded Develop)*
 
