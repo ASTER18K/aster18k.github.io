@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<h1 class="page-title">Category: {{ page.category }}</h1>
+
+<div class="posts">
+  {% assign category_posts = site.categories[page.category] %}
+  {% for post in category_posts %}
+  <div style="display:flex; justify-content:space-between; align-items:baseline; padding:0.25rem 0;">
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date" style="margin:0; flex-shrink:0; padding-left:1rem;">{{ post.date | date: "%Y.%m.%d" }}</time>
+  </div>
+  {% endfor %}
+</div>

@@ -9,6 +9,14 @@
           <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
 
           <nav class="nav">
+            <small class="nav-dropdown">
+              <a href="#" onclick="toggleArchive(event)">Arch1ve</a>
+              <div class="nav-dropdown-menu" id="archiveMenu">
+                <a href="/cs/">CS</a>
+                <a href="/away/">Away</a>
+                <a href="/trash/">Trash</a>
+              </div>
+            </small>
             {% for nav in site.nav %}
             <small><a href="{{ nav.url }}">{{ nav.title }}</a></small>
             {% endfor %}
@@ -31,7 +39,23 @@
           All rights reserved.
         </small>
       </footer>
+
+      <p style="font-family:'Old Standard TT', serif; font-size:0.7rem; line-height:1.8; opacity:0.3; text-align:left;">
+        When I wondered whether to go — I should have gone.<br>
+        When I wondered whether to act — I should have stayed my hand.<br>
+        When I wondered whether to speak — I should have shut my mouth.<br>
+        When I wondered whether to give — I should have given.
+      </p>
       <script>
+        function toggleArchive(e) {
+          e.preventDefault();
+          document.getElementById('archiveMenu').classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.nav-dropdown')) {
+            document.getElementById('archiveMenu').classList.remove('open');
+          }
+        });
         document.getElementById('current-year').textContent = new Date().getFullYear();
         document.getElementById('current-year').setAttribute('datetime', new Date().toISOString());
       </script>

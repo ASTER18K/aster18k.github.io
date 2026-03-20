@@ -41,8 +41,5 @@ version: 3.0.0
 
 # Navbar page list
 nav:
-  - title: Arch1ve
-    url: /archive
-
   - title: About
     url: /about

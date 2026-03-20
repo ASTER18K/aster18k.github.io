@@ -10,6 +10,8 @@
 
 .masthead-title {
   margin-bottom: 0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 
   a {
     color: inherit;
@@ -27,4 +29,44 @@
   float: right;
   line-height: 1.25rem;
   word-spacing: 1rem;
+}
+
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1.4rem;
+    background-color: var(--body-bg);
+    border: 1px solid var(--border-color);
+    z-index: 100;
+    white-space: nowrap;
+    min-width: 8rem;
+    text-align: center;
+
+    a {
+      display: block;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      text-decoration: none;
+      word-spacing: 0;
+      border-bottom: 1px solid var(--border-color);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: var(--border-color);
+      }
+    }
+
+    &.open {
+      display: block;
+    }
+  }
 }
