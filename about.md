@@ -13,13 +13,16 @@ Residing in Japan since 2024
 ## Career (Japan / 2024 ~)
 ---
 - *[SANEI HYTECHS co.,ltd.](https://www.sanei-hy.co.jp/)*
-  - *Software Engineer (2024.4 ~ 2024.12 / RL78 Embedded Develop)*
+  - *2024.4 ~ 2024.12*
+  - *Software Engineer (RL78 Embedded Development)*
 
 - *[NETASSIST Inc.](https://www.netassist.ne.jp/)*
-  - *Server Engineer (2025.1 ~ 2026.3 / MSP Monitoring, Server Deployment)*
+  - *2025.1 ~ 2026.3*
+  - *Server Engineer (MSP, RMM, Server Deployment)*
 
 - *[IIJ Global Solutions Inc.](https://www.iijglobal.co.jp/)*
-  - *Server Engineer (2026.4 ~ present / Development & Deployment)*
+  - *2026.4 ~ present*
+  - *Server Engineer (Development & Deployment)*
 <br />
 <br />
 
@@ -31,52 +34,57 @@ Residing in Japan since 2024
   </tr>
   <tr>
     <td style="vertical-align:top; padding:8px; border-top:1px solid var(--border-color); border-right:1px solid var(--border-color);">
-      <strong>Programming</strong><br>
-      &nbsp;&nbsp;C<br>
-      &nbsp;&nbsp;ASM(RL78)<br>
-      &nbsp;&nbsp;Python<br>
-      &nbsp;&nbsp;Shell Script<br>
+      <strong>Prog</strong><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;C<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;ASM(RL78)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;Python<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;Shell Script<br>
       <br>
       <strong>Network / Serv</strong><br>
       &nbsp;・OS<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;Linux(RHEL, Debian)<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;Windows Server 2019, 2022<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux(RHEL, Debian)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows Server 19, 22<br>
       <br>
       &nbsp;・Network Switch<br>
       &nbsp;&nbsp;&nbsp;&nbsp;Huawei<br>
       <br>
       &nbsp;・Service<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;Apache, Nginx, Docker, Zabbix<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apache<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nginx<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Docker<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zabbix<br>
       <br>
       &nbsp;・SQL<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;MySQL(MariaDB)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MySQL(MariaDB)<br>
       <br>
       &nbsp;・Cloud<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;AWS, Sakura Cloud<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWS<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sakura Cloud<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDC Frontier<br>
       <br>
       &nbsp;・VM<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;vSphere
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vSphere
     </td>
     <td style="vertical-align:top; padding:8px 8px 8px 16px; border-top:1px solid var(--border-color); border-left:1px solid var(--border-color);">
-      <strong>Programming</strong><br>
-      &nbsp;&nbsp;Java<br>
-      &nbsp;&nbsp;JavaScript(Node.js)<br>
-      &nbsp;&nbsp;PHP<br>
-      &nbsp;&nbsp;Kotlin(Android)<br>
+      <strong>Prog</strong><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;Java<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;JavaScript(Node.js)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;PHP<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;Kotlin(Android)<br>
       <br>
       <strong>Network / Serv</strong><br>
       &nbsp;・OS<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;macOS Server<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;BSD<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;macOS Server<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BSD<br>
       <br>
       &nbsp;・SQL<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;Oracle<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oracle<br>
       <br>
       &nbsp;・Cloud<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;Azure<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Azure<br>
       <br>
       &nbsp;・VM<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;QEMU
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QEMU
     </td>
   </tr>
 </table>
