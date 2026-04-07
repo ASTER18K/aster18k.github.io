@@ -22,7 +22,7 @@ Residing in Japan since 2024
 
 - *[IIJ Global Solutions Inc.](https://www.iijglobal.co.jp/)*
   - *2026.4 ~ present*
-  - *Server Engineer (Development & Deployment)*
+  - *System Integration*
 <br />
 <br />
 
