@@ -149,6 +149,3 @@ sudo update-ca-certificates
 ```
 
 Then `ssh myserver` should work.
-</br>
-</br>
-2026.04.13
