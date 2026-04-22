@@ -113,4 +113,4 @@ Mail: aster1sk@mail.aster1sk.com<br />
 <br />
 <br />
 <br />
-![PROFILE](./assets/_about/about_under.jpg)
+![PROFILE](/assets/about/about_under.jpg)
