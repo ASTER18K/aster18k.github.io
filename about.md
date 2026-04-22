@@ -113,4 +113,4 @@ Mail: aster1sk@mail.aster1sk.com<br />
 <br />
 <br />
 <br />
-![PROFILE](https://avatars.githubusercontent.com/u/9290323?v=4)
+![PROFILE](./assets/_about/about_under.jpg)
