@@ -57,6 +57,3 @@ vmIdleTimeout=-1
  
 Reboot and you'll see the terminal pop up at login with vpnkit running.
  
-## Trade-off
- 
-The terminal window stays visible the whole time, which is actually fine since you can tell at a glance whether vpnkit is alive and the logs are right there if something breaks. Just minimize it and forget about it.
