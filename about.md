@@ -13,15 +13,15 @@ Residing in Japan since 2024
 ## Career (Japan / 2024 ~)
 ---
 - *[SANEI HYTECHS co.,ltd.](https://www.sanei-hy.co.jp/)*
-  - *2024.4 ~ 2024.12*
+  - *2024.4 - 2024.12*
   - *Software Engineer (RL78 Embedded Development)*
 
 - *[NETASSIST Inc.](https://www.netassist.ne.jp/)*
-  - *2025.1 ~ 2026.3*
+  - *2025.1 - 2026.3*
   - *Server Engineer (MSP, RMM, Server Deployment)*
 
 - *[IIJ Global Solutions Inc.](https://www.iijglobal.co.jp/)*
-  - *2026.4 ~ present*
+  - *2026.4 - present*
   - *System Integration*
 <br />
 <br />
@@ -95,19 +95,17 @@ Residing in Japan since 2024
 ---
 - *YeungJin University*
   - *School of Computer Information*
-    - *(2021 ~ 2023 / College Degree)*
+    - *(2021 - 2023 / College Degree)*
 
 - *Kyung Hee Cyber University*
   - *Department of Electronic Information Engineering* 
-    - *(2026 ~ present / Currently Enrolled)*
+    - *(2026 - present / Currently Enrolled)*
 <br />
 <br />
 
 ## Contacts
 ---
 [Github: ASTER18K](https://github.com/ASTER18K)<br />
-[Github: A-R-BACKUP](https://github.com/A-R-BACKUP)<br />
-[Instagram: a__s__t__e__r__i__s__k__](https://www.instagram.com/a__s__t__e__r__i__s__k__)<br />
 Mail: aster1sk@mail.aster1sk.com<br />
 <br />
 <br />

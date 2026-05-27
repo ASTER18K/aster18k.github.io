@@ -8,7 +8,7 @@ tags: [wsl2, vpn, globalprotect, networking, cloudflare-tunnel]
 
 ## Problem
 
-WSL2 + GlobalProtect VPN ⇒ no internet inside WSL. DNS works, but TCP connections just time out.
+When I'm on the company GlobalProtect VPN, WSL2 loses internet completely. DNS resolution still works for some reason, but every TCP connection just hangs until it times out.
 
 ## Things I tried (didn't work)
 
@@ -23,7 +23,7 @@ generateResolvConf = false
 nameserver 1.1.1.1
 ```
 
-Only fixes DNS. The actual problem is routing, so `curl` still hangs.
+This only fixes DNS, which wasn't really broken in the first place. The actual problem is routing, so `curl` still hangs forever.
 
 ### Mirrored Mode
 
@@ -35,22 +35,22 @@ dnsTunneling=true
 autoProxy=true
 ```
 
-DNS worked, TCP still timed out. GlobalProtect ignores traffic from the Hyper-V virtual adapter, so WSL packets never enter the VPN tunnel.
+DNS worked again but TCP still timed out. Turns out GlobalProtect ignores traffic from the Hyper-V virtual adapter, so WSL packets never make it into the VPN tunnel.
 
-`curl.exe` on Windows: works. `curl` in WSL: timeout. That confirmed it.
+I confirmed this by running `curl.exe google.com` on Windows (works) and `curl google.com` inside WSL (times out) at the same time.
 
 ## Fix: wsl-vpnkit
 
-[wsl-vpnkit](https://github.com/sakai135/wsl-vpnkit) tunnels WSL2 traffic through the Windows network stack via `gvproxy`. GlobalProtect handles it properly since it looks like normal host traffic.
+[wsl-vpnkit](https://github.com/sakai135/wsl-vpnkit) tunnels WSL2 traffic through the Windows network stack via `gvproxy`, so the packets look like normal host traffic and GlobalProtect handles them properly.
 
-Make sure `.wslconfig` is NAT mode (default):
+First make sure `.wslconfig` is back to NAT mode (the default):
 
 ```ini
 [wsl2]
 networkingMode=nat
 ```
 
-If you messed with `wsl.conf` / `resolv.conf` earlier, revert them:
+If you messed with `wsl.conf` or `resolv.conf` earlier, revert them:
 
 ```bash
 sudo chattr -i /etc/resolv.conf
@@ -58,7 +58,7 @@ sudo rm /etc/resolv.conf
 sudo rm /etc/wsl.conf
 ```
 
-`wsl --shutdown`, then install:
+Run `wsl --shutdown` and then install:
 
 ```powershell
 curl.exe -L -o $env:USERPROFILE\wsl-vpnkit.tar.gz "https://github.com/sakai135/wsl-vpnkit/releases/latest/download/wsl-vpnkit.tar.gz"
@@ -66,13 +66,13 @@ curl.exe -L -o $env:USERPROFILE\wsl-vpnkit.tar.gz "https://github.com/sakai135/w
 wsl --import wsl-vpnkit $env:USERPROFILE\wsl-vpnkit $env:USERPROFILE\wsl-vpnkit.tar.gz --version 2
 ```
 
-Run in a separate terminal:
+Then run it in a separate terminal and keep that terminal open:
 
 ```powershell
 wsl.exe -d wsl-vpnkit --cd /app wsl-vpnkit
 ```
 
-Keep it running, open WSL in another terminal. Done.
+With that running you can open your regular WSL distro in another terminal and everything just works.
 
 ### Auto-start
 
@@ -83,13 +83,13 @@ $settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoi
 Register-ScheduledTask -TaskName "wsl-vpnkit" -Action $action -Trigger $trigger -Settings $settings -Description "WSL VPN connectivity"
 ```
 
-After `wsl --shutdown`, you need to restart wsl-vpnkit manually since the task only triggers at login.
+Keep in mind the task only fires at login, so if you ever run `wsl --shutdown` you'll have to restart wsl-vpnkit manually.
 
 ## SSH to external servers via Cloudflare Tunnel
 
-wsl-vpnkit gets internet working, but full-tunnel VPN still blocks unauthorized external SSH. Same on Windows side.
+wsl-vpnkit gets internet working inside WSL, but the full-tunnel VPN still blocks unauthorized external SSH, and that's true on the Windows side too.
 
-Cloudflare Tunnel can get around this. If your company does SSL Inspection, you'll need to deal with the certificate issue too.
+You can get around this with Cloudflare Tunnel. If your company does SSL Inspection on top of the VPN, there's an extra certificate step to deal with.
 
 ### Server side
 
@@ -115,7 +115,7 @@ EOF
 cloudflared tunnel run my-ssh
 ```
 
-Add a CNAME record in Cloudflare DNS pointing to the tunnel.
+Then add a CNAME record in Cloudflare DNS pointing to the tunnel.
 
 ### Client side (WSL)
 
@@ -124,7 +124,7 @@ curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloud
 sudo dpkg -i cloudflared.deb
 ```
 
-`~/.ssh/config`:
+Add this to `~/.ssh/config`:
 
 ```
 Host myserver
@@ -135,13 +135,13 @@ Host myserver
 
 ### SSL Inspection
 
-If your VPN does SSL Inspection, you'll get:
+If your VPN does SSL Inspection you'll hit this error:
 
 ```
 tls: failed to verify certificate: x509: certificate signed by unknown authority
 ```
 
-Extract the corporate CA cert and register it:
+Extract the corporate CA cert and register it on the client:
 
 ```bash
 echo | openssl s_client -connect ssh.yourdomain.com:443 2>/dev/null | openssl x509 -out /tmp/company-ca.crt
@@ -149,4 +149,4 @@ sudo cp /tmp/company-ca.crt /usr/local/share/ca-certificates/
 sudo update-ca-certificates
 ```
 
-Then `ssh myserver` should work.
+After that `ssh myserver` should connect through the tunnel.
