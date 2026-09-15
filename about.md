@@ -110,11 +110,11 @@ Residing in Japan since 2024
 
 ## Education
 ---
-- *Yeungjin University*
+- *[Yeungjin University](https://www.yju.ac.kr/en/index.do)*
   - *School of Computer Information*
     - *(2021 - 2023 / Associate Degree, 3-year program)*
 
-- *Kyung Hee Cyber University*
+- *[Kyung Hee Cyber University](https://www.khcu.ac.kr/en/main/index.do)*
   - *Department of Electronic Information Engineering* 
     - *(2026 - present / Enrolled)*
 <br />
