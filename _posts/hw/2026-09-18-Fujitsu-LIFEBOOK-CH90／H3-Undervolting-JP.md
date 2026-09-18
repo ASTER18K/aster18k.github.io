@@ -105,6 +105,7 @@ BIOSでSecure Bootを切ってF12で起動する。
 ### 電力制限の解除（失敗）
 <details>
 <summary>試したこと</summary>
+
 #### MSRのロック解除
 ```
 setup_var.efi CpuSetup:0x30=0x0
