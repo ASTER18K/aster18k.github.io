@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "Fixing wsl-vpnkit Auto-start Dying After Login"
-category: CS
+title: "[WSL]Fixing wsl-vpnkit Auto-start Dying After Login"
+category: SW
 date: 2026-05-27
 tags: [wsl2, vpn, autostart]
 ---
 
 ## Problem
  
-I set up wsl-vpnkit auto-start with Task Scheduler in my [previous post](/cs/2026/04/13/wsl2-vpn-internet-fix/), but it turned out the task triggers fine at login and then dies about a minute later.
+I set up wsl-vpnkit auto-start with Task Scheduler in my [previous post](/sw/2026/04/13/wsl2-vpn-internet-fix/), but it turned out the task triggers fine at login and then dies about a minute later.
  
 ```
 PS> Get-ScheduledTask -TaskName "wsl-vpnkit" | Get-ScheduledTaskInfo

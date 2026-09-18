@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Fixing WSL2 Internet Connectivity with GlobalProtect VPN + SSH Workaround via Cloudflare Tunnel"
-category: CS
+title: "[WSL]Fixing WSL2 Internet Connectivity with GlobalProtect VPN + SSH Workaround via Cloudflare Tunnel"
+category: SW
 date: 2026-04-13
 tags: [wsl2, vpn, globalprotect, networking, cloudflare-tunnel]
 ---
