@@ -76,6 +76,9 @@ and others were there as well, but they are declared as `EFI_IFR_VARSTORE` and w
 | SaSetup | 72C5E28C-7783-43A1-8767-FAD73FCCAFA4 |
 | CpuSetup | B08F97FF-E6E8-4193-A997-5E9E9B0ADB32 |
 | PchSetup | 4570B7F1-ADE8-4943-8DC3-406472842384 |
+
+<br>
+
 ---
  
 ## Modifying offsets with setup_var
