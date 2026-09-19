@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[WSL]Fixing wsl-vpnkit Auto-start Dying After Login"
+title: "Fixing wsl-vpnkit Auto-start Dying After Login"
 category: SW
 date: 2026-05-27
 tags: [wsl2, vpn, autostart]

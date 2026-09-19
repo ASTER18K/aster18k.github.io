@@ -9,9 +9,13 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
 }
 
+// Title font per script: Latin -> Old Standard TT, Japanese -> Zen Old Mincho,
+// Korean -> Nanum Myeongjo. The browser falls through the list per character,
+// so order matters: Zen Old Mincho must come before Nanum Myeongjo because
+// Nanum also ships kana and a partial Han set (Hangul is only in Nanum).
 h1 {
   font-size: 2rem;
-  font-family: "Old Standard TT", var(--body-font);
+  font-family: "Old Standard TT", "Zen Old Mincho", "Nanum Myeongjo", var(--body-font);
   font-weight: normal;
 }
 

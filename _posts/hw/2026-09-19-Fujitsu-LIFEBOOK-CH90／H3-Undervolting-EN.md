@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[LAPTOP]Fujitsu LIFEBOOK CH90/H3 Undervolting"
+title: "Fujitsu LIFEBOOK CH90/H3 Undervolting"
 category: HW
-date: 2026-09-18
+date: 2026-09-19
 tags: [Fujitsu, FMV, CH90, setup_var, undervolting, 1255U]
 ---
-> [日本語](./2026-09-18-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-JP.md)
+> [日本語]({% post_url hw/2026-09-18-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-JP %})
  
 ---
 ## Warning
@@ -21,10 +21,9 @@ Any problem caused by modifying the offsets is your own responsibility.
  
 ---
 ## Environment
-Machine: Fujitsu LIFEBOOK CH90/H3 (FMVC90H3LC)
-Motherboard: FJNBB7C
-BIOS: 1.08
-CPU: Core i7-1255U (2P+8E, Base 15W / Max Turbo 55W)
+Machine: Fujitsu LIFEBOOK CH90/H3 (FMVC90H3LC)<br>
+BIOS: 1.08<br>
+CPU: Core i7-1255U<br>
 Memory: LPDDR5-4800 16GB onboard
  
 ---
@@ -99,12 +98,14 @@ There are three things to watch for.
 - Variable names are case sensitive. `Cpusetup` gives Not Found, `CpuSetup` works
 - The number in parentheses is the byte count. Putting `(0)` on a 2 byte field gives `Specified value to write is larger than specified size 0 bytes`
 - When several variables share a name you need the ID. There are two of `Setup`, so it has to be written as `Setup(0x1)`
+
 All three can fail silently or write a wrong value, so after a write command you have to check whether the write went through properly.
  
 ---
 ### Removing the power limit (failed)
-<details>
+<details markdown="1">
 <summary>What I tried</summary>
+
 #### Unlocking the MSR
 ```
 setup_var.efi CpuSetup:0x30=0x0
@@ -191,6 +192,7 @@ setup_var.efi CpuSetup:0x10E
 | 0x10E | 0 | Overclocking Lock |
  
 #### Domains
+
 | domain | Mode | Prefix | Offset | bytes |
 |---|---|---|---|---|
 | P-core | CpuSetup:0x1DD | CpuSetup:0x1E2 | CpuSetup:0x1E0 | 2 |
@@ -264,26 +266,34 @@ Ring gave 4439 at -70mV against 4440 at -50mV, and since the difference was marg
 ## Final settings
  
 ```
+# power limit (cTDP / MSR lock) - no actual effect, for reference only
 setup_var.efi CpuSetup:0x227=0x1
 setup_var.efi CpuSetup:0x5B(4)=0x6D60
 setup_var.efi CpuSetup:0x5F(4)=0xD6D8
 setup_var.efi CpuSetup:0x63=0x38
 setup_var.efi CpuSetup:0x30=0x0
+ 
+# thermal - PROCHOT 95C to 96C
 setup_var.efi CpuSetup:0x7F=0x4
  
+# Intel DTT disable
 setup_var.efi Setup(0x1):0x6B1=0x0
  
+# undervolt - unlock
 setup_var.efi CpuSetup:0x1D9=0x1
 setup_var.efi CpuSetup:0x10E=0x0
  
+# undervolt - P-core -100mV
 setup_var.efi CpuSetup:0x1DD=0x0
 setup_var.efi CpuSetup:0x1E2=0x1
 setup_var.efi CpuSetup:0x1E0(2)=0x64
  
+# undervolt - E-core L2 -50mV
 setup_var.efi CpuSetup:0x2AF=0x0
 setup_var.efi CpuSetup:0x2B4=0x1
 setup_var.efi CpuSetup:0x2B2(2)=0x32
  
+# undervolt - Ring -50mV
 setup_var.efi CpuSetup:0x1E9=0x0
 setup_var.efi CpuSetup:0x1EE=0x1
 setup_var.efi CpuSetup:0x1EC(2)=0x32

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "[LAPTOP]富士通 LIFEBOOK CH90/H3 アンダーボルト"
+title: "富士通 LIFEBOOK CH90/H3 アンダーボルト"
 category: HW
-date: 2026-09-18
+date: 2026-09-19
 tags: [Fujitsu, FMV, CH90, setup_var, undervolting, 1255U]
 ---
-> [English](./2026-09-18-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-EN.md)
+> [English]({% post_url hw/2026-09-18-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-EN %})
  
 ---
 ## 注意
@@ -21,10 +21,9 @@ BIOS NVRAMの操作は起動不能を引き起こすことがあり、復旧に�
  
 ---
 ## 環境
-機種: 富士通 LIFEBOOK CH90/H3 (FMVC90H3LC)
-マザーボード: FJNBB7C
-BIOS: 1.08
-CPU: Core i7-1255U (2P+8E, Base 15W / Max Turbo 55W)
+機種: 富士通 LIFEBOOK CH90/H3 (FMVC90H3LC)<br>
+BIOS: 1.08<br>
+CPU: Core i7-1255U<br>
 メモリ: LPDDR5-4800 16GB オンボード
  
 ---
@@ -99,11 +98,12 @@ BIOSでSecure Bootを切ってF12で起動する。
 - 変数名は大文字と小文字を区別する。`Cpusetup` はNot Foundになり `CpuSetup` なら通る
 - かっこの中の数字はバイト数である。2バイトのフィールドに `(0)` を入れると `Specified value to write is larger than specified size 0 bytes` が出る
 - 同名の変数が複数ある場合はIDが必要になる。`Setup` は2つあるので `Setup(0x1)` と書かなければならない
+
 3つとも黙って失敗したり誤った値が書き込まれたりする可能性があるので書き込みコマンドのあとにきちんと書けたかどうかを確認する必要がある。
  
 ---
 ### 電力制限の解除（失敗）
-<details>
+<details markdown="1">
 <summary>試したこと</summary>
 
 #### MSRのロック解除
@@ -193,6 +193,7 @@ setup_var.efi CpuSetup:0x10E
 | 0x10E | 0 | Overclocking Lock |
  
 #### ドメイン
+
 | ドメイン | Mode | Prefix | Offset | バイト |
 |---|---|---|---|---|
 | P-core | CpuSetup:0x1DD | CpuSetup:0x1E2 | CpuSetup:0x1E0 | 2 |
@@ -266,26 +267,34 @@ Ringは-70mVで4439となり-50mVの4440との差が微妙だったので-50mV�
 ## 最終設定
  
 ```
+# 電力制限（cTDP / MSRロック）- 変更しても実際には変わらないので参考まで
 setup_var.efi CpuSetup:0x227=0x1
 setup_var.efi CpuSetup:0x5B(4)=0x6D60
 setup_var.efi CpuSetup:0x5F(4)=0xD6D8
 setup_var.efi CpuSetup:0x63=0x38
 setup_var.efi CpuSetup:0x30=0x0
+ 
+# 温度 PROCHOT 95度から96度へ
 setup_var.efi CpuSetup:0x7F=0x4
  
+# Intel DTTの無効化
 setup_var.efi Setup(0x1):0x6B1=0x0
  
+# アンダーボルト ロック解除
 setup_var.efi CpuSetup:0x1D9=0x1
 setup_var.efi CpuSetup:0x10E=0x0
  
+# アンダーボルト P-core -100mV
 setup_var.efi CpuSetup:0x1DD=0x0
 setup_var.efi CpuSetup:0x1E2=0x1
 setup_var.efi CpuSetup:0x1E0(2)=0x64
  
+# アンダーボルト E-core L2 -50mV
 setup_var.efi CpuSetup:0x2AF=0x0
 setup_var.efi CpuSetup:0x2B4=0x1
 setup_var.efi CpuSetup:0x2B2(2)=0x32
  
+# アンダーボルト Ring -50mV
 setup_var.efi CpuSetup:0x1E9=0x0
 setup_var.efi CpuSetup:0x1EE=0x1
 setup_var.efi CpuSetup:0x1EC(2)=0x32
