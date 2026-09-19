@@ -9,7 +9,14 @@ permalink: pretty
 plugins:
   - jekyll-gist
   - jekyll-paginate
+  - jekyll-relative-links
   - jekyll-seo-tag
+
+# Turn Markdown links to other .md files (e.g. [日本語](./...-JP.md)) into the
+# built page URLs. GitHub Pages ships this plugin; it only handles pages by
+# default, so enable it for posts too.
+relative_links:
+  collections: true
 
 # Optimize Jekyll
 exclude:

@@ -5,7 +5,7 @@ category: HW
 date: 2026-09-19
 tags: [Fujitsu, FMV, CH90, setup_var, undervolting, 1255U]
 ---
-> [English]({% post_url hw/2026-09-18-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-EN %})
+> [English](./2026-09-19-Fujitsu-LIFEBOOK-CH90／H3-Undervolting-EN.md)
  
 ---
 ## 注意
