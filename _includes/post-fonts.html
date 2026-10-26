@@ -1,0 +1,78 @@
+{%- comment -%}
+  Per-post body fonts picked by engfont / jpfont / korfont in front matter.
+  See _data/fonts.yml. Each picked font draws only its own script; everything
+  else falls through to the body font. A plain font-family stack can't do that
+  (CJK fonts also ship Latin, Korean fonts also ship kana, and the system font
+  on macOS swallows Hangul if listed first), so the script below fetches
+  Google's CSS for the family, renames it to post-<lang>, and clips every
+  @font-face unicode-range to that script.
+{%- endcomment -%}
+{%- assign picked = "" -%}
+{%- assign stack = "" -%}
+{%- assign langs = "eng,jp,kor" | split: "," -%}
+{%- for lang in langs -%}
+  {%- assign key = lang | append: "font" -%}
+  {%- assign pick = page[key] -%}
+  {%- assign font = site.data.fonts[lang][pick] -%}
+  {%- if font -%}
+    {%- capture spec -%}{{ font.family | replace: " ", "+" }}{% if font.axes %}:{{ font.axes }}{% endif %}{%- endcapture -%}
+    {%- capture picked -%}{{ picked }}["{{ lang }}", {{ spec | jsonify }}], {% endcapture -%}
+    {%- capture stack -%}{{ stack }}"post-{{ lang }}", {% endcapture -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if stack != "" %}
+  <style>.post-body { font-family: {{ stack }}var(--body-font); }</style>
+  <script>
+    (function () {
+      // Code points each language's font may draw.
+      var scripts = {
+        // Latin, Latin-1, Latin Extended, general punctuation, currency
+        eng: [[0x0000, 0x024F], [0x1E00, 0x1EFF], [0x2000, 0x206F], [0x20A0, 0x20CF]],
+        // CJK punctuation, kana, kanji, full/half-width forms
+        jp: [[0x3000, 0x30FF], [0x31F0, 0x31FF], [0x3400, 0x4DBF], [0x4E00, 0x9FFF], [0xF900, 0xFAFF], [0xFF00, 0xFFEF]],
+        // Hangul jamo and syllables
+        kor: [[0x1100, 0x11FF], [0x3130, 0x318F], [0xA960, 0xA97F], [0xAC00, 0xD7FF]]
+      };
+      var picked = [{{ picked }}];
+
+      function parse(list) {
+        return list.split(",").map(function (part) {
+          var m = part.trim().match(/^U\+([0-9a-f?]+)(?:-([0-9a-f]+))?$/i);
+          if (!m) return null;
+          return [parseInt(m[1].replace(/\?/g, "0"), 16), parseInt((m[2] || m[1]).replace(/\?/g, "f"), 16)];
+        }).filter(Boolean);
+      }
+
+      function clip(ranges, allowed) {
+        var out = [];
+        ranges.forEach(function (r) {
+          allowed.forEach(function (a) {
+            var lo = Math.max(r[0], a[0]), hi = Math.min(r[1], a[1]);
+            if (lo <= hi) out.push("U+" + lo.toString(16) + (lo === hi ? "" : "-" + hi.toString(16)));
+          });
+        });
+        return out.join(", ");
+      }
+
+      picked.forEach(function (p) {
+        var lang = p[0];
+        fetch("https://fonts.googleapis.com/css2?family=" + p[1] + "&display=swap")
+          .then(function (res) { return res.text(); })
+          .then(function (css) {
+            var faces = (css.match(/@font-face\s*{[^}]*}/g) || []).map(function (face) {
+              var m = face.match(/unicode-range:\s*([^;}]+)/);
+              var range = clip(m ? parse(m[1]) : [[0, 0x10FFFF]], scripts[lang]);
+              if (!range) return "";
+              return face
+                .replace(/font-family:[^;]+;/, 'font-family: "post-' + lang + '";')
+                .replace(/\s*unicode-range:[^;}]+;?/, "")
+                .replace(/\s*}$/, "\n  unicode-range: " + range + ";\n}");
+            });
+            var style = document.createElement("style");
+            style.textContent = faces.join("\n");
+            document.head.appendChild(style);
+          });
+      });
+    })();
+  </script>
+{%- endif %}

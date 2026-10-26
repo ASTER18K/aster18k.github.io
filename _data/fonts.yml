@@ -1,0 +1,31 @@
+# Post body fonts, loaded from Google Fonts.
+#
+# A post opts in from its front matter with any of:
+#   engfont: M
+#   jpfont: M
+#   korfont: M
+# The value is a key under the matching language below (case-sensitive).
+# Each font draws only its own script (korfont -> Hangul only, and so on);
+# languages without a pick, and posts without these keys, use the default
+# body font.
+#
+# No URL needed: the Google Fonts request is built from these two fields.
+#   family: Google Fonts family name, exactly as shown on fonts.google.com
+#   axes:   optional css2 axis spec, i.e. the part after ":" in the embed URL
+#           (e.g. wght@400;700). Without it Google serves weight 400 only and
+#           bold text is synthesized.
+
+eng:
+  M:
+    family: Old Standard TT
+    axes: ital,wght@0,400;0,700;1,400
+
+jp:
+  M:
+    family: Zen Old Mincho
+    axes: wght@400;700
+
+kor:
+  M:
+    family: Nanum Myeongjo
+    axes: wght@400;700
