@@ -4,6 +4,8 @@ url: https://arch1ve.aster1sk.com
 paginate: 1
 baseurl: ""
 permalink: pretty
+timezone: Asia/Seoul
+future: true
 
 # Gems
 plugins:
