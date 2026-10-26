@@ -22,16 +22,16 @@ eng:
   M:
     family: Old Standard TT
     axes: ital,wght@0,400;0,700;1,400
-    size: 110%
+    size: 105%
 
 jp:
   M:
     family: Zen Old Mincho
     axes: wght@400;700
-    size: 110%
+    size: 105%
 
 kor:
   M:
     family: Nanum Myeongjo
     axes: wght@400;700
-    size: 110%
+    size: 105%
