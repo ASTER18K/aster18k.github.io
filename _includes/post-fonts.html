@@ -16,7 +16,7 @@
   {%- assign font = site.data.fonts[lang][pick] -%}
   {%- if font -%}
     {%- capture spec -%}{{ font.family | replace: " ", "+" }}{% if font.axes %}:{{ font.axes }}{% endif %}{%- endcapture -%}
-    {%- capture picked -%}{{ picked }}["{{ lang }}", {{ spec | jsonify }}], {% endcapture -%}
+    {%- capture picked -%}{{ picked }}["{{ lang }}", {{ spec | jsonify }}, {{ font.size | default: "100%" | jsonify }}], {% endcapture -%}
     {%- capture stack -%}{{ stack }}"post-{{ lang }}", {% endcapture -%}
   {%- endif -%}
 {%- endfor -%}
@@ -55,7 +55,7 @@
       }
 
       picked.forEach(function (p) {
-        var lang = p[0];
+        var lang = p[0], size = p[2];
         fetch("https://fonts.googleapis.com/css2?family=" + p[1] + "&display=swap")
           .then(function (res) { return res.text(); })
           .then(function (css) {
@@ -66,7 +66,7 @@
               return face
                 .replace(/font-family:[^;]+;/, 'font-family: "post-' + lang + '";')
                 .replace(/\s*unicode-range:[^;}]+;?/, "")
-                .replace(/\s*}$/, "\n  unicode-range: " + range + ";\n}");
+                .replace(/\s*}$/, "\n  unicode-range: " + range + ";\n  size-adjust: " + size + ";\n}");
             });
             var style = document.createElement("style");
             style.textContent = faces.join("\n");

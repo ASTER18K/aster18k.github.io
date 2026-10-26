@@ -14,18 +14,24 @@
 #   axes:   optional css2 axis spec, i.e. the part after ":" in the embed URL
 #           (e.g. wght@400;700). Without it Google serves weight 400 only and
 #           bold text is synthesized.
+#   size:   optional CSS size-adjust (default 100%). Scales only this font's
+#           glyphs, so text drawn by the default font keeps its size. Serif
+#           and Mincho faces look smaller than the default font at 15px.
 
 eng:
   M:
     family: Old Standard TT
     axes: ital,wght@0,400;0,700;1,400
+    size: 110%
 
 jp:
   M:
     family: Zen Old Mincho
     axes: wght@400;700
+    size: 110%
 
 kor:
   M:
     family: Nanum Myeongjo
     axes: wght@400;700
+    size: 110%
